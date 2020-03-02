@@ -1,6 +1,6 @@
 # pukiwiki-plugin-gitlab-issues
 
-Pukiwiki plugin to show the table listing GitLab issues.
+🦊 Pukiwiki plugin to show the table listing GitLab issues.
 
 ## Usage
 
