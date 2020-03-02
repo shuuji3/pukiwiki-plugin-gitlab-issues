@@ -2,6 +2,8 @@
 
 🦊 Pukiwiki plugin to show the table listing GitLab issues.
 
+![スクリーンショット](screenshot.png)
+
 ## Usage
 
 ```
