@@ -64,6 +64,7 @@ function makeIssuesTableDOM(issues) {
     <thead>
       <th>作成日</th>
       <th>更新日</th>
+      <th>状態</th>
       <th>タイトル</th>
       <th>タグ</th>
       <th>作成者</th>
@@ -95,6 +96,7 @@ function buildIssueRowHTML(issue) {
 <tr>
   <td>\${formatDateTime(issue.created_at)}</td>
   <td>\${formatDateTime(issue.updated_at)}</td>
+  <td>\${issue.state}</td>
   <td><a href="\${issue.web_url}">\${issue.title}</a></td>
   <td>\${issue.labels.join(', ')}</td>
   <td>\${authorHTML}</td>
