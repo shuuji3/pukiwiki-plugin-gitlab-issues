@@ -27,11 +27,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function getIssues() {
-  const url = 'https://$domain/api/v4/projects/$project_id/issues';
+  const url = 'https://$domain/api/v4/projects/$project_id/issues?order_by=updated_at';
   const options = { headers: { Authorization: `Bearer $api_token` }};
   const res = await fetch(url, options);
-  const	issues = await res.json();
-  issues.sort((issue1, issue2) => dayjs(issue2.updated_at) - dayjs(issue1.updated_at));
+  const issues = await res.json();
   return issues;
 }
 
@@ -54,9 +53,15 @@ function makeIssuesTableDOM(issues) {
   .gitlab-issues td, .gitlab-issues th {
     font-size: 1em;
   }
-
   .gitlab-issues a.icon:before {
     display: none;
+  }
+  .gitlab-issues .issue-state-opened {
+    background: #bbdefb;
+  }
+  .gitlab-issues .issue-state-closed {
+    background: #ffcdd2;
+;
   }
 </style>
 <div class="gitlab-issues">
@@ -96,7 +101,7 @@ function buildIssueRowHTML(issue) {
 <tr>
   <td>\${formatDateTime(issue.created_at)}</td>
   <td>\${formatDateTime(issue.updated_at)}</td>
-  <td>\${issue.state}</td>
+  <td class="issue-state-\${issue.state}">\${issue.state}</td>
   <td><a href="\${issue.web_url}">\${issue.title}</a></td>
   <td>\${issue.labels.join(', ')}</td>
   <td>\${authorHTML}</td>
