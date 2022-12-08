@@ -16,8 +16,8 @@ function plugin_gitlab_issues_convert() {
     }
 
     $js_code = <<<EOC
-import domify from 'https://cdn.pika.dev/domify';
-import dayjs from 'https://cdn.pika.dev/dayjs';
+import domify from 'https://cdn.pika.dev/domify@1.4.1';
+import dayjs from 'https://cdn.pika.dev/dayjs@1.11.6';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const issues = (await getIssues()).slice(0, $limit);
