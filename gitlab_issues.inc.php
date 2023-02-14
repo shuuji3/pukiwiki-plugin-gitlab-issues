@@ -20,14 +20,14 @@ import domify from 'https://cdn.pika.dev/domify@1.4.1';
 import dayjs from 'https://cdn.pika.dev/dayjs@1.11.6';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const issues = (await getIssues()).slice(0, $limit);
+  const issues = (await getIssues('$domain', '$project_id')).slice(0, $limit);
   const issuesTableDOM = makeIssuesTableDOM(issues);
-  document.querySelector('#gitlab-issues-placeholder').appendChild(domify(issuesTableDOM));
-  document.querySelector('#gitlab-issues-loading').style = 'display: none;';
+  document.querySelector('#gitlab-issues-placeholder-$project_id').appendChild(domify(issuesTableDOM));
+  document.querySelector('#gitlab-issues-loading-$project_id').style = 'display: none;';
 });
 
-async function getIssues() {
-  const url = 'https://$domain/api/v4/projects/$project_id/issues?order_by=updated_at';
+async function getIssues(domain, project_id) {
+  const url = 'https://' + domain + '/api/v4/projects/' + project_id + '/issues?order_by=updated_at';
   const options = { headers: { Authorization: `Bearer $api_token` }};
   const res = await fetch(url, options);
   const issues = await res.json();
@@ -114,8 +114,8 @@ function formatDateTime(datetime) {
 }
 EOC;
 
-    return '<div id="gitlab-issues-placeholder"></div>' .
-    '<div id="gitlab-issues-loading">&#9203; Loading GitLab issues...</div>' .
+    return '<div id="gitlab-issues-placeholder-' . $project_id . '"></div>' .
+    '<div id="gitlab-issues-loading-' . $project_id . '">&#9203; Loading GitLab issues...</div>' .
     '<script type="module">' . $js_code . '</script>';
 }
 ?>
