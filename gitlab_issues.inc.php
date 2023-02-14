@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function getIssues(domain, project_id) {
-  const url = 'https://' + domain + '/api/v4/projects/' + project_id + '/issues?order_by=updated_at';
+  const url = `https://${domain}/api/v4/projects/${project_id}/issues?order_by=updated_at`;
   const options = { headers: { Authorization: `Bearer $api_token` }};
   const res = await fetch(url, options);
   const issues = await res.json();
