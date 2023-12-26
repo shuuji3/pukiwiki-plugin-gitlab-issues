@@ -23,6 +23,9 @@
 
 - [doc/api/api_resources.md · master · GitLab.org / GitLab · GitLab](https://gitlab.com/gitlab-org/gitlab/blob/master/doc/api/api_resources.md)
 
+## Forks
+- For GitHub: https://github.com/tsukuba-hpcs/pukiwiki-plugin-github-issues
+
 ## License
 
 [GNU GPLv3](LICENSE)
